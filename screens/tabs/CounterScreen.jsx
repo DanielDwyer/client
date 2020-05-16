@@ -15,7 +15,7 @@ import { increaseCounter, decreaseCounter } from '../../redux/actions/counterAct
 class CounterScreen extends React.Component {
   render() {
     const {
-      loggedIn,
+      isLoggedIn,
       reduxLogin,
       reduxIncreaseCounter,
       counter,
@@ -23,12 +23,12 @@ class CounterScreen extends React.Component {
     } = this.props;
     return (
       <SafeAreaView style={styles.container}>
-        <View style={styles.loggedInContainer}>
-          <Text style={styles.loggedInText}>Logged In: </Text>
-          <Text style={styles.loggedInText}>{`${loggedIn}`}</Text>
+        <View style={styles.isLoggedInContainer}>
+          <Text style={styles.isLoggedInText}>Logged In: </Text>
+          <Text style={styles.isLoggedInText}>{`${isLoggedIn}`}</Text>
           <Button
             title="Login"
-            onPress={loggedIn === false ? () => reduxLogin(true) : () => reduxLogin(false)}
+            onPress={isLoggedIn === false ? () => reduxLogin(true) : () => reduxLogin(false)}
             style={styles.loginButton}
           />
         </View>
@@ -51,7 +51,7 @@ class CounterScreen extends React.Component {
 // Redux Store --> Component
 const mapStateToProps = (state) => ({
   counter: state.counterReducer.counter,
-  loggedIn: state.authReducer.loggedIn,
+  isLoggedIn: state.authReducer.isLoggedIn,
 });
 // Map Dispatch To Props (Dispatch Actions To Reducers. Reducers Then Modify The
 // Data And Assign It To Your Props)
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  loggedInContainer: {
+  isLoggedInContainer: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  loggedInText: {
+  isLoggedInText: {
     fontFamily: 'System',
     fontSize: 17,
     fontWeight: '400',
